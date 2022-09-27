@@ -10,6 +10,12 @@ const useForm = (initialForm = {}, formValidations = {}) => {
     createValidators();
   }, [formState])
 
+  // Se agrega este useEffect para cuando utilizamos la nota activa se actualice el formulario, cuidado con objetos creados en las posiciones de memoria ya que puede crear un bucle infinito
+  useEffect(() => {
+    setformState(initialForm);
+  }, [initialForm])
+
+
   const isFormValid = useMemo(() => {
 
     for (const formValue of Object.keys(formValidation)) {

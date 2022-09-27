@@ -9,16 +9,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { checkingCredentiales } from '../../store/auth/authSlice';
 import { checkingAuthentication, startGoogleSignIn, startLoginWithEmailPassword } from '../../store/auth/thunks';
 
+const formData = {
+  email: 'jesus@gmail.com',
+  password: '12345'
+}
+
 export const LoginPage = () => {
 
   const { status, errorMessage } = useSelector(state => state.auth);
 
   const dispatch = useDispatch();
 
-  const { email, password, onInputChange } = useForm({
-    email: 'jesus@gmail.com',
-    password: '12345'
-  });
+  const { email, password, onInputChange } = useForm(formData);
 
   // Si el status cambia se vuelve a memorizar el valor booleano
   const isAuthenticating = useMemo(() => status === 'checking', [status]);

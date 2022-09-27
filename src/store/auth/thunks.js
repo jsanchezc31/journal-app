@@ -1,5 +1,6 @@
 import { async } from "@firebase/util";
 import { loginWithEmailPassword, logoutFirebase, registerUserWithEmailPassword, signInWithGoogle } from "../../firebase/providers";
+import { clearNotesLogout } from "../journal/journalSlice";
 import { checkingCredentiales, login, logout } from "./authSlice";
 
 
@@ -63,5 +64,8 @@ export const startLogout = () => {
 
     await logoutFirebase();
     dispatch(logout({}))
+    //  Eliminar las notas al cerrar sesión
+    dispatch(clearNotesLogout());
+
   }
 };
